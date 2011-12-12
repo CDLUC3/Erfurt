@@ -67,7 +67,7 @@ class Erfurt_Versioning
         $eventDispatcher->register('onDeleteMatchingStatements', $this);
         $eventDispatcher->register('onDeleteMultipleStatements', $this);
 		//*** UDFR- Abhi- Registering event for Reviewer Action
-		//$eventDispatcher->register('onReviewStatement', $this);
+		$eventDispatcher->register('onReviewStatement', $this);
     }
     
     /**
@@ -363,7 +363,7 @@ class Erfurt_Versioning
         }
     }
     
-	/*UDFR- Abhi- Additional Event for Review Action
+	//UDFR- Abhi- Additional Event for Review Action
     public function onReviewStatement(Erfurt_Event $event)
     {
         $this->_checkSetup();
@@ -385,7 +385,7 @@ class Erfurt_Versioning
             // do nothing
         }
     }
-	*/
+	
 	
     public function onAddMultipleStatements(Erfurt_Event $event)
     {
