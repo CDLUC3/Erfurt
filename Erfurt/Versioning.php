@@ -236,7 +236,7 @@ class Erfurt_Versioning
                 model = \'' . $graphUri . '\' AND 
                 resource = \'' . $resourceUri . '\' AND
                 parent IS NULL
-                ORDER BY tstamp DESC';
+                ORDER BY id DESC';					// ORDER BY tstamp DESC - Abhi - For rendering histories in descending order by 'id'
 
         $result = $this->_sqlQuery(
             $sql, 
