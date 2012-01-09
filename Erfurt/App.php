@@ -349,14 +349,15 @@ class Erfurt_App
 	/** UDFR - Abhi - User Profile task
      * Adds new user profile in model to the store.
      * 
-     * @param string $username
+     * @param string $username as label and as userName
 	 * @param string $realName
+	 * @param string $jobTitle
      * @param string $orgAffiliation
      * @param string|null $notes
      * @param string|null $website
      * @return boolean
      */
-	public function addUserProfile($username, $realName, $orgAffiliation, $notes, $website, $userType)
+	public function addUserProfile($username, $realName, $jobTitle, $orgAffiliation, $notes, $website, $userType)
     {
         $acModel1    = $this->getProfileModel(); //UDFR -  Abhi
 		$acModelUri1 = $acModel1->getModelUri(); //UDFR -  Abhi
@@ -390,6 +391,18 @@ class Erfurt_App
             ),
             false
         );
+		
+		$store1->addStatement(
+            $acModelUri1,
+            $userUri1, 
+            'http://www.udfr.org/profile/userName', 
+            array(
+                'value'    => $username, 
+                'type'     => 'literal',
+                'datatype' => EF_XSD_NS . 'string'
+            ),
+            false
+        );
 
 		$store1->addStatement(
             $acModelUri1,
@@ -397,6 +410,18 @@ class Erfurt_App
             'http://www.udfr.org/profile/name', 
             array(
                 'value'    => $realName, 
+                'type'     => 'literal',
+                'datatype' => EF_XSD_NS . 'string'
+            ),
+            false
+        );
+		
+		$store1->addStatement(
+            $acModelUri1,
+            $userUri1, 
+            'http://www.udfr.org/profile/jobTitle', 
+            array(
+                'value'    => $jobTitle, 
                 'type'     => 'literal',
                 'datatype' => EF_XSD_NS . 'string'
             ),
