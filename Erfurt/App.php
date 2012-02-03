@@ -346,12 +346,12 @@ class Erfurt_App
         return true;
     }
     
-		//UDFR - Abhi - User Profile task
+	//UDFR - Abhi - User Profile task
 	public function getProfileModel() 
     {
         if (null === $this->_acModel1) {
             
-            $this->_acModel1 = $this->getStore()->getModel("http://www.udfr.org/profile/", false);
+            $this->_acModel1 = $this->getStore()->getModel($this->_config->profile->model, false);
         }
         
         return $this->_acModel1;
@@ -369,14 +369,14 @@ class Erfurt_App
      */
 	public function addUserProfile($username, $realName, $jobTitle, $orgAffiliation, $notes, $website, $userType)
     {
-        $acModel1    = $this->getProfileModel(); //UDFR -  Abhi
-		$acModelUri1 = $acModel1->getModelUri(); //UDFR -  Abhi
-        $store1      = $acModel1->getStore(); //UDFR -  Abhi
-        $userUri1    = $acModelUri1 . urlencode($username); //UDFR -  Abhi
+        $acModel1    = $this->getProfileModel(); 
+		$acModelUri1 = $acModel1->getModelUri();
+        $store1      = $acModel1->getStore();
+        $userUri1    = $acModelUri1 . urlencode($username);
 		if ($userType == 'Agent') {
-			$type = 'http://www.udfr.org/profile/IndividualProfile';
+			$type = $this->_config->profile->classes->IndividualProfile;
 		} else { 
-			$type = 'http://www.udfr.org/profile/DataSourceProfile';
+			$type = $this->_config->profile->classes->DataSourceProfile;
 		}
         
 		$store1->addStatement(
@@ -405,7 +405,7 @@ class Erfurt_App
 		$store1->addStatement(
             $acModelUri1,
             $userUri1, 
-            'http://www.udfr.org/profile/userName', 
+            $this->_config->profile->property->userName, 
             array(
                 'value'    => $username, 
                 'type'     => 'literal',
@@ -417,7 +417,7 @@ class Erfurt_App
 		$store1->addStatement(
             $acModelUri1,
             $userUri1, 
-            'http://www.udfr.org/profile/name', 
+            $this->_config->profile->property->name,
             array(
                 'value'    => $realName, 
                 'type'     => 'literal',
@@ -429,7 +429,7 @@ class Erfurt_App
 		$store1->addStatement(
             $acModelUri1,
             $userUri1, 
-            'http://www.udfr.org/profile/jobTitle', 
+            $this->_config->profile->property->jobTitle,
             array(
                 'value'    => $jobTitle, 
                 'type'     => 'literal',
@@ -441,7 +441,7 @@ class Erfurt_App
 		$store1->addStatement(
             $acModelUri1,
             $userUri1, 
-            'http://www.udfr.org/profile/orgAffiliation', 
+            $this->_config->profile->property->orgAffiliation,
             array(
                 'value'    => $orgAffiliation, 
                 'type'     => 'literal',
@@ -454,7 +454,7 @@ class Erfurt_App
             $store1->addStatement(
                 $acModelUri1,
                 $userUri1, 
-                'http://www.udfr.org/profile/notes', 
+                $this->_config->profile->property->notes,
                 array(
                     'value' => $notes,
                     'type'     => 'literal',
@@ -468,7 +468,7 @@ class Erfurt_App
             $store1->addStatement(
                 $acModelUri1,
                 $userUri1, 
-                'http://www.udfr.org/profile/website', 
+                $this->_config->profile->property->website,
                 array(
                     'value' => $website,
                     'type'     => 'literal',
