@@ -1,345 +1,317 @@
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:profile="http://udfr.org/profile/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:sysont="http://ns.ontowiki.net/SysOnt/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:udfrs="http://udfr.org/onto#"
     xmlns:sioc="http://rdfs.org/sioc/ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xml:base="http://localhost/OntoWiki/Config/" > 
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/Usergroup/Reviewer">
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Review"/>
-    <sysont:grantModelEdit rdf:resource="http://www.udfr.org/udfr/"/>
-    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
-    <sysont:denyModelEdit rdf:resource=""/>
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
-    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
-    <sysont:denyModelView rdf:resource=""/>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-    <rdfs:comment>Reviewer can approve any statements</rdfs:comment>
-    <rdfs:label>Reviewer</rdfs:label>
-    <sioc:has_member rdf:resource="http://localhost/OntoWiki/Config/cdltest"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/grantModelEdit">
-    <rdfs:subPropertyOf rdf:resource="http://ns.ontowiki.net/SysOnt/grantModelView"/>
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Model Based Access Control: Which Models are allowed to edit (and read)</rdfs:comment>
-    <rdfs:label>editable model</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/AdminGroup">
-    <sioc:has_member rdf:resource="http://localhost/OntoWiki/Config/Admin"/>
-    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
-    <sysont:grantModelEdit rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/AnyAction"/>
-    <sysont:denyModelEdit rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
-    <rdfs:comment>The group of all admins. If not changed, they can trigger all actions and can edit all models but the system ontology.</rdfs:comment>
-    <rdfs:label>AdminGroup</rdfs:label>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/SuperAdmin">
-    <rdfs:comment>This special account is the SuperAdministrator. He has hard coded access to all models and actions and uses the user nick and pass from the database configuration. All access control statements of this user are ignored by the system.</rdfs:comment>
-    <rdfs:label>SuperAdmin</rdfs:label>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#User"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Review">
-    <rdfs:label>Review</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:label>label</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/isFacet">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:comment>This property is a good candidate for beeing a facet in a instance list.</rdfs:comment>
-    <rdfs:label>is facet</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/grantModelView">
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Model Based Access Control: Which Models are allowed to read</rdfs:comment>
-    <rdfs:label>readable model</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/possibleDatatype">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:comment>Since it is not allowed to state more than one possible datatypes of a datatype property in OWL, you can use this relation. (not implemented yet)</rdfs:comment>
-    <rdfs:label>possible datatype</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/Usergroup/Contributor">
-    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
-    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysBase/"/>
-    <sioc:has_member rdf:resource="http://localhost/OntoWiki/Config/cdltest"/>
-    <sysont:grantModelEdit rdf:resource="http://www.udfr.org/udfr/"/>
-    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
-    <rdfs:label>Contributor</rdfs:label>
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
-    <sysont:denyModelView rdf:resource=""/>
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/RegisterNewUser"/>
-    <rdfs:comment>Contributors are allowed to create, read, update and delete the instances only.</rdfs:comment>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-    <sysont:denyModelEdit rdf:resource="http://www.udfr.org/onto/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <rdf:rest rdf:nodeID="A2"/>
-    <rdf:first rdf:resource="http://rdfs.org/sioc/ns#User"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/prefix">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:comment>This property describes namespace prefix configurations.</rdfs:comment>
-    <rdfs:label>used prefix</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://rdfs.org/sioc/ns#has_member">
-    <rdfs:range rdf:resource="http://rdfs.org/sioc/ns#User"/>
-    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-    <rdfs:comment>The sioc:member property relates a sioc:Usergroup to a sioc:User that is a member of that group.</rdfs:comment>
-    <rdfs:label>member</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/rawConfig">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-    <rdfs:comment>This property holds action configuration values beyond the rdf schema.</rdfs:comment>
-    <rdfs:label>config</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:label>comment</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/isLarge">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:comment>When models are too big counting can be disabled and limits are added</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:label>is large</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
+  xml:base="http://localhost/OntoWiki/Config/">
+  <sysont:Model rdf:about="">
+    <sysont:prefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >udfrs=http://udfr.org/onto#</sysont:prefix>
     <sysont:prefix>rdfs=http://www.w3.org/2000/01/rdf-schema#</sysont:prefix>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+    <owl:versionInfo rdf:resource="https://raw.github.com/UDFR/Erfurt/master/Erfurt/include/SysOntLocal.rdf"/>
     <rdfs:comment>This is your OntoWiki configuration model. You can configure model based access control and some actions here.</rdfs:comment>
     <sysont:prefix>owl=http://www.w3.org/2002/07/owl#</sysont:prefix>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <sysont:prefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >profile=http://udfr.org/profile/</sysont:prefix>
     <sysont:prefix>rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#</sysont:prefix>
     <rdfs:label>OntoWiki System Configuration</rdfs:label>
     <sysont:prefix>foaf=http://xmlns.com/foaf/0.1/</sysont:prefix>
     <sysont:prefix>sioc=http://rdfs.org/sioc/ns#</sysont:prefix>
     <sysont:prefix>sysont=http://ns.ontowiki.net/SysOnt/</sysont:prefix>
-    <owl:versionInfo rdf:resource="https://raw.github.com/UDFR/Erfurt/master/Erfurt/include/SysOntLocal.rdf"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/cdltest">
-    <sioc:email rdf:resource="mailto:stephen.abrams@ucop.edu"/>
-    <sysont:userPassword>085c96e2382ade2fad67b654fc1478e842ed1b28</sysont:userPassword>
-    <foaf:accountName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cdltest</foaf:accountName>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#User"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://rdfs.org/sioc/ns#email">
-    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
-    <rdfs:comment>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox.</rdfs:comment>
+  </sysont:Model>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean">
+    <rdfs:label>Boolean</rdfs:label>
+  </rdfs:Datatype>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string">
+    <rdfs:label>String</rdfs:label>
+  </rdfs:Datatype>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#anyURI">
+    <rdfs:label>Any URI</rdfs:label>
+  </rdfs:Datatype>
+  <owl:Class rdf:about="http://ns.ontowiki.net/SysOnt/Model">
+    <rdfs:label>Model</rdfs:label>
+    <rdfs:comment>A model is a knowledge base in OntoWiki.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://rdfs.org/sioc/ns#User">
+    <rdfs:comment>Users are able to log into OntoWiki.</rdfs:comment>
+    <rdfs:label>User</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://rdfs.org/sioc/ns#Usergroup">
+    <rdfs:comment>A Group of User Accounts ...</rdfs:comment>
+    <rdfs:label>Usergroup</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:nodeID="A0">
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://rdfs.org/sioc/ns#User"/>
+      <owl:Class rdf:about="http://rdfs.org/sioc/ns#Usergroup"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://ns.ontowiki.net/SysOnt/Action">
+    <rdfs:label>Action</rdfs:label>
+    <rdfs:comment>Actions represent specific GUI or API actions which can be activated or used by an Agent.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/grantModelEdit">
+    <rdfs:label>editable model</rdfs:label>
+    <rdfs:comment>Model Based Access Control: Which Models are allowed to edit (and read)</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/grantModelView"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/hiddenImports">
+    <rdfs:label>hidden imports</rdfs:label>
+    <rdfs:comment>Acts like owl:imports but is not part of the model itself.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/grantModelView">
+    <rdfs:label>readable model</rdfs:label>
+    <rdfs:comment>Model Based Access Control: Which Models are allowed to read</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/possibleDatatype">
+    <rdfs:label>possible datatype</rdfs:label>
+    <rdfs:comment>Since it is not allowed to state more than one possible datatypes of a datatype property in OWL, you can use this relation. (not implemented yet)</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://rdfs.org/sioc/ns#has_member">
+    <rdfs:label>member</rdfs:label>
+    <rdfs:comment>The sioc:member property relates a sioc:Usergroup to a sioc:User that is a member of that group.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
+    <rdfs:range rdf:resource="http://rdfs.org/sioc/ns#User"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/denyModelEdit">
+    <rdfs:label>not editable model</rdfs:label>
+    <rdfs:comment>Model Based Access Control: Which Models are NOT allowed to edit (and read)</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/grantAccess">
+    <rdfs:label>grant access</rdfs:label>
+    <rdfs:comment>Access Control: Which Actions are allowed to accessed?</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/denyModelView">
+    <rdfs:label>not readable model</rdfs:label>
+    <rdfs:comment>Model Based Access Control: Which Models are NOT allowed to read</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+    <rdfs:subPropertyOf rdf:resource="http://ns.ontowiki.net/SysOnt/denyModelEdit"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://ns.ontowiki.net/SysOnt/denyAccess">
+    <rdfs:label>deny access</rdfs:label>
+    <rdfs:comment>Action Based Access Control: Which Actions are NOT to be accessed?</rdfs:comment>
+    <rdfs:domain rdf:nodeID="A0"/>
+    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://rdfs.org/sioc/ns#email">
     <rdfs:label>mbox</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Anonymous">
-    <sysont:denyAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Rollback"/>
-    <sysont:denyAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
-    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
+    <rdfs:comment>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/accountName">
+    <rdfs:label>uid</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>This is the user identifier of an OntoWiki account which is used for login</rdfs:comment>
+    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/isFacet">
+    <rdfs:label>is facet</rdfs:label>
+    <rdfs:comment>This property is a good candidate for beeing a facet in a instance list.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/prefix">
+    <rdfs:label>used prefix</rdfs:label>
+    <rdfs:comment>This property describes namespace prefix configurations.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/rawConfig">
+    <rdfs:label>config</rdfs:label>
+    <rdfs:comment>This property holds action configuration values beyond the rdf schema.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/hidden">
+    <rdfs:label>hidden</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>All resources (especially Models, Classes and Properties) can be hidden.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/isLarge">
+    <rdfs:label>is large</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>When models are too big counting can be disabled and limits are added</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://ns.ontowiki.net/SysOnt/userPassword">
+    <rdfs:comment>The password of an OntoWiki Account.</rdfs:comment>
+    <rdfs:label>password</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <sioc:Usergroup rdf:about="http://localhost/OntoWiki/Config/Usergroup/Reviewer">
+    <sysont:denyModelEdit rdf:resource="http://udfr.org/onto#"/>
+    <sysont:grantAccess>
+      <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/Review">
+        <rdfs:label>Review</rdfs:label>
+      </sysont:Action>
+    </sysont:grantAccess>
+    <sysont:denyModelView>
+      <sysont:Model rdf:about="http://ns.ontowiki.net/SysOnt/">
+        <sysont:hidden rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >1</sysont:hidden>
+        <sysont:prefix>sysont=http://ns.ontowiki.net/SysOnt/</sysont:prefix>
+        <rdfs:label>OntoWiki System Ontology</rdfs:label>
+        <sysont:isLarge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >1</sysont:isLarge>
+        <sysont:prefix>owl=http://www.w3.org/2002/07/owl#</sysont:prefix>
+        <sysont:prefix>sioc=http://rdfs.org/sioc/ns#</sysont:prefix>
+        <owl:versionInfo rdf:resource="https://raw.github.com/UDFR/Erfurt/master/Erfurt/include/SysOnt.rdf"/>
+        <rdfs:comment>This schema model provides the vocabulary to configure an OntoWiki installation (e.g. terms for access control). Some terms are copied from FOAF.</rdfs:comment>
+        <sysont:prefix>rdfs=http://www.w3.org/2000/01/rdf-schema#</sysont:prefix>
+        <sysont:prefix>rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#</sysont:prefix>
+        <sysont:prefix>foaf=http://xmlns.com/foaf/0.1/</sysont:prefix>
+      </sysont:Model>
+    </sysont:denyModelView>
+    <sysont:denyModelEdit rdf:resource="http://udfr.org/profile/"/>
+    <sysont:denyModelEdit rdf:resource=""/>
+    <sysont:grantAccess>
+      <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/Login">
+        <rdfs:label>Login</rdfs:label>
+        <rdfs:comment>Login to the OntoWiki application</rdfs:comment>
+        <sysont:rawConfig>type=RDF</sysont:rawConfig>
+      </sysont:Action>
+    </sysont:grantAccess>
+    <sysont:grantModelView>
+      <sysont:Model rdf:about="http://ns.ontowiki.net/SysOnt/AnyModel">
+        <rdfs:label>AnyModel</rdfs:label>
+        <rdfs:comment>This special model identifies any model.</rdfs:comment>
+      </sysont:Model>
+    </sysont:grantModelView>
     <sysont:denyModelView rdf:resource=""/>
-    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysBase/"/>
-    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
+    <sysont:grantModelEdit rdf:resource="http://udfr.org/udfr/"/>
+    <rdfs:comment>Reviewer can approve any statements</rdfs:comment>
+    <sioc:has_member>
+      <sioc:User rdf:about="http://localhost/OntoWiki/Config/cdltest">
+        <foaf:accountName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >cdltest</foaf:accountName>
+        <sioc:email rdf:resource="mailto:stephen.abrams@ucop.edu"/>
+        <sysont:userPassword>085c96e2382ade2fad67b654fc1478e842ed1b28</sysont:userPassword>
+      </sioc:User>
+    </sioc:has_member>
+    <rdfs:label>Reviewer</rdfs:label>
+  </sioc:Usergroup>
+  <sioc:Usergroup rdf:about="http://localhost/OntoWiki/Config/AdminGroup">
+    <rdfs:label>AdminGroup</rdfs:label>
+    <rdfs:comment>The group of all admins. If not changed, they can trigger all actions and can edit all models but the system ontology.</rdfs:comment>
+    <sysont:denyModelEdit rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
+    <sysont:grantAccess>
+      <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/AnyAction">
+        <rdfs:label>AnyAction</rdfs:label>
+        <rdfs:comment>This special action identifies any action.</rdfs:comment>
+      </sysont:Action>
+    </sysont:grantAccess>
     <sysont:grantModelEdit rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
+    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
+    <sioc:has_member>
+      <sioc:User rdf:about="http://localhost/OntoWiki/Config/Admin">
+        <rdfs:label>Admin</rdfs:label>
+        <rdfs:comment>This is the pre-configured Admin User.</rdfs:comment>
+        <foaf:accountName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Admin</foaf:accountName>
+      </sioc:User>
+    </sioc:has_member>
+  </sioc:Usergroup>
+  <sioc:User rdf:about="http://ns.ontowiki.net/SysOnt/SuperAdmin">
+    <rdfs:label>SuperAdmin</rdfs:label>
+    <rdfs:comment>This special account is the SuperAdministrator. He has hard coded access to all models and actions and uses the user nick and pass from the database configuration. All access control statements of this user are ignored by the system.</rdfs:comment>
+  </sioc:User>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:label>label</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <sioc:Usergroup rdf:about="http://localhost/OntoWiki/Config/Usergroup/Contributor">
+    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
+    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysBase/"/>
+    <sioc:has_member rdf:resource="http://localhost/OntoWiki/Config/cdltest"/>
+    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
+    <rdfs:label>Contributor</rdfs:label>
+    <sysont:denyModelEdit rdf:resource="http://udfr.org/profile/"/>
+    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
+    <sysont:denyModelView rdf:resource=""/>
+    <sysont:grantAccess>
+      <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/RegisterNewUser">
+        <rdfs:label>Register new User</rdfs:label>
+        <rdfs:comment>Register new users with application/register</rdfs:comment>
+        <sysont:rawConfig>defaultGroup=http://localhost/OntoWiki/Config/Usergroup/Contributor</sysont:rawConfig>
+        <sysont:rawConfig>mailvalidation=yes</sysont:rawConfig>
+        <sysont:rawConfig>uidregexp="/^[[:alnum:]]+$/"</sysont:rawConfig>
+        <sysont:rawConfig>passregexp=""</sysont:rawConfig>
+      </sysont:Action>
+    </sysont:grantAccess>
+    <rdfs:comment>Contributors are allowed to create, read, update and delete the instances only.</rdfs:comment>
+    <sysont:grantModelEdit rdf:resource="http://udfr.org/udfr/"/>
+    <sysont:denyModelEdit rdf:resource="http://udfr.org/onto#"/>
+  </sioc:Usergroup>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
+    <rdfs:label>comment</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <sioc:User rdf:about="http://ns.ontowiki.net/SysOnt/Anonymous">
+    <sysont:denyAccess>
+      <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/Rollback">
+        <rdfs:label>Rollback</rdfs:label>
+        <rdfs:comment>Rollback changes on statements to a past version (needs Versioning)</rdfs:comment>
+        <sysont:rawConfig>global=on</sysont:rawConfig>
+      </sysont:Action>
+    </sysont:denyAccess>
+    <sysont:denyModelView rdf:resource=""/>
+    <sysont:denyAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
     <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/RegisterNewUser"/>
-    <rdfs:comment>This special account identifies the anonymous user.</rdfs:comment>
+    <sysont:denyModelView rdf:resource="http://udfr.org/profile/"/>
     <rdfs:label>Anonymous</rdfs:label>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#User"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/ModelManagement">
-    <rdfs:label>ModelManagement</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-    <rdfs:comment>Create and remove models from the store</rdfs:comment>
+    <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
+    <rdfs:comment>This special account identifies the anonymous user.</rdfs:comment>
+    <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
+  </sioc:User>
+  <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/ModelManagement">
     <rdfs:label>Model Management</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/ExtensionConfiguration">
+    <rdfs:comment>Create and remove models from the store</rdfs:comment>
+    <rdfs:label>ModelManagement</rdfs:label>
+  </sysont:Action>
+  <sysont:Action rdf:about="http://ns.ontowiki.net/SysOnt/ExtensionConfiguration">
     <rdfs:label>ExtensionConfiguration</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/DefaultUserGroup">
+  </sysont:Action>
+  <sioc:Usergroup rdf:about="http://localhost/OntoWiki/Config/DefaultUserGroup">
     <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Login"/>
     <rdfs:label>DefaultUserGroup</rdfs:label>
     <sysont:denyModelEdit rdf:resource="http://ns.ontowiki.net/SysBase/"/>
     <sysont:grantModelEdit rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
     <rdfs:comment>This pre-configured user group can login, register new user and edit all models except the system models.</rdfs:comment>
     <sysont:grantModelView rdf:resource="http://ns.ontowiki.net/SysOnt/AnyModel"/>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-    <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/Rollback"/>
     <sysont:denyModelView rdf:resource="http://ns.ontowiki.net/SysOnt/"/>
     <sysont:grantAccess rdf:resource="http://ns.ontowiki.net/SysOnt/RegisterNewUser"/>
     <sioc:has_member rdf:resource="http://localhost/OntoWiki/Config/cdltest"/>
     <sysont:denyModelView rdf:resource=""/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/AnyAction">
-    <rdfs:comment>This special action identifies any action.</rdfs:comment>
-    <rdfs:label>AnyAction</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/denyModelEdit">
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Model Based Access Control: Which Models are NOT allowed to edit (and read)</rdfs:comment>
-    <rdfs:label>not editable model</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/grantAccess">
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Access Control: Which Actions are allowed to accessed?</rdfs:comment>
-    <rdfs:label>grant access</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string">
-    <rdfs:label>String</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Action">
-    <rdfs:comment>Actions represent specific GUI or API actions which can be activated or used by an Agent.</rdfs:comment>
-    <rdfs:label>Action</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/denyAccess">
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Action Based Access Control: Which Actions are NOT to be accessed?</rdfs:comment>
-    <rdfs:label>deny access</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#anyURI">
-    <rdfs:label>Any URI</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Model">
-    <rdfs:comment>A model is a knowledge base in OntoWiki.</rdfs:comment>
-    <rdfs:label>Model</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Login">
-    <sysont:rawConfig>type=RDF</sysont:rawConfig>
-    <rdfs:comment>Login to the OntoWiki application</rdfs:comment>
-    <rdfs:label>Login</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/RegisterNewUser">
-    <sysont:rawConfig>passregexp=""</sysont:rawConfig>
-    <sysont:rawConfig>uidregexp="/^[[:alnum:]]+$/"</sysont:rawConfig>
-    <sysont:rawConfig>mailvalidation=yes</sysont:rawConfig>
-    <sysont:rawConfig>defaultGroup=http://localhost/OntoWiki/Config/DefaultUserGroup</sysont:rawConfig>
-    <rdfs:comment>Register new users with application/register</rdfs:comment>
-    <rdfs:label>Register new User</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://rdfs.org/sioc/ns#User">
-    <rdfs:label>User</rdfs:label>
-    <rdfs:comment>Users are able to log into OntoWiki.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/accountName">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
-    <rdfs:comment>This is the user identifier of an OntoWiki account which is used for login</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:label>uid</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A0">
-    <owl:unionOf rdf:nodeID="A1"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://rdfs.org/sioc/ns#Usergroup">
-    <rdfs:label>Usergroup</rdfs:label>
-    <rdfs:comment>A Group of User Accounts ...</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/hiddenImports">
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:domain rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:comment>Acts like owl:imports but is not part of the model itself.</rdfs:comment>
-    <rdfs:label>hidden imports</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A2">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://rdfs.org/sioc/ns#Usergroup"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://localhost/OntoWiki/Config/Admin">
-    <foaf:accountName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Admin</foaf:accountName>
-    <rdfs:comment>This is the pre-configured Admin User.</rdfs:comment>
-    <rdfs:label>Admin</rdfs:label>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#User"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/AnyModel">
-    <rdfs:comment>This special model identifies any model.</rdfs:comment>
-    <rdfs:label>AnyModel</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#boolean">
-    <rdfs:label>Boolean</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/hidden">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:comment>All resources (especially Models, Classes and Properties) can be hidden.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:label>hidden</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/Rollback">
-    <sysont:rawConfig>global=on</sysont:rawConfig>
-    <rdfs:comment>Rollback changes on statements to a past version (needs Versioning)</rdfs:comment>
-    <rdfs:label>Rollback</rdfs:label>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Action"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/">
-    <sysont:hidden rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sysont:hidden>
-    <sysont:prefix>sysont=http://ns.ontowiki.net/SysOnt/</sysont:prefix>
-    <rdf:type rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <sysont:isLarge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sysont:isLarge>
-    <sysont:prefix>owl=http://www.w3.org/2002/07/owl#</sysont:prefix>
-    <sysont:prefix>sioc=http://rdfs.org/sioc/ns#</sysont:prefix>
-    <sysont:prefix>rdfs=http://www.w3.org/2000/01/rdf-schema#</sysont:prefix>
-    <sysont:prefix>rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#</sysont:prefix>
-    <sysont:prefix>foaf=http://xmlns.com/foaf/0.1/</sysont:prefix>
-    <owl:versionInfo rdf:resource="http://code.google.com/p/ontowiki/source/list?path=/erfurt/src/Erfurt/include/SysOnt.rdf"/>
-    <rdfs:comment>This schema model provides the vocabulary to configure an OntoWiki installation (e.g. terms for access control). Some terms are copied from FOAF.</rdfs:comment>
-    <rdfs:label>OntoWiki System Ontology</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/denyModelView">
-    <rdfs:subPropertyOf rdf:resource="http://ns.ontowiki.net/SysOnt/denyModelEdit"/>
-    <rdfs:range rdf:resource="http://ns.ontowiki.net/SysOnt/Model"/>
-    <rdfs:domain rdf:nodeID="A0"/>
-    <rdfs:comment>Model Based Access Control: Which Models are NOT allowed to read</rdfs:comment>
-    <rdfs:label>not readable model</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://ns.ontowiki.net/SysOnt/userPassword">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://rdfs.org/sioc/ns#User"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:label>password</rdfs:label>
-    <rdfs:comment>The password of an OntoWiki Account.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
+  </sioc:Usergroup>
 </rdf:RDF>
 
 <!-- Created with TopBraid -->
